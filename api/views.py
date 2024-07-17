@@ -9,8 +9,13 @@ from classperiod.models import ClassPeriod
 from .serializers import ClassPeriodSerializer
 from course.models import Course
 from .serializers import CourseSerializer
-# from 
-# from .
+from teacher.models import Teacher
+from .serializers import TeacherSerializer
+from classroom.models import Class
+from .serializers import ClassSerializer
+
+
+
 
 
 class StudentListView(APIView):
@@ -32,10 +37,16 @@ class CourseListView(APIView):
         serializer= Course(courses,many=True)
         return Response(serializer.data)
     
+class TeacherListView(APIView):
+    def get (self,request):
+        teachers= Teacher.objects.all()
+        serializer= Teacher(teachers,many=True)
+        return Response(serializer.data)    
+    
      
-# class ClassListView(APIView):
-#     def get (self,request):
-#         classes= Class.objects.all()
-#         serializer= Class(classes,many=True)
-#         return Response(serializer.data)
+class ClassListView(APIView):
+    def get (self,request):
+        classes= Class.objects.all()
+        serializer= Class(classes,many=True)
+        return Response(serializer.data)
     
